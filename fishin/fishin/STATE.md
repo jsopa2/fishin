@@ -25,11 +25,12 @@ V0 — Prediction Feasibility
 
 ## Active Work
 
-Issue #7 defines the first bounded V0 extraction slice and data contract:
-red drum, North Carolina state waters, shore mode, waves 3–5, years 2018–2025.
-The selection and acceptance checks are documented in
-`docs/v0-pilot-slice-and-data-contract.md`. No extraction or model has been
-run yet.
+Issue #8 adds a bounded, standard-library NOAA MRIP CSV archive extractor for
+the selected red drum, North Carolina state-waters, shore, waves 3–5,
+2018–2025 slice. It records source hashes, exact filters, coverage, grain,
+missing cells, and weighted point-rate diagnostics without committing source
+data. NOAA survey precision templates and environmental joins remain
+intentionally unimplemented.
 
 ## Blocked
 
@@ -55,13 +56,19 @@ None currently. This work remains within V0 research scope and does not require 
 - Public weather and hydrology datasets are available without paid services, including NOAA/NWS, NOAA CDO, Open-Meteo historical archive, USGS NWIS, and NOAA buoy observations.
 - The main feasibility risk is not missing weather data; it is building a valid trip-level outcome label and joining that label to the correct time and place without introducing noise.
 - NOAA documents public MRIP filters and downloads for the selected dimensions, but cell-level support and precision remain unknown until extraction.
+- The public MRIP CSV archives use `ST=37`, `MODE_FX=3`, `AREA_X=5`, and
+  red-drum `SP_CODE=8835440901`/`COMMON=RED DRUM` for the selected source
+  labels. These are encoded in the bounded extractor and should be verified
+  against the current NOAA variable guide when files are acquired.
 - The first join contract is a pre-specified NOAA ISD station-to-North Carolina wave join; missing environmental observations remain missing rather than being imputed.
 - Marine/coastal datasets are relatively mature, while inland freshwater data quality depends heavily on nearby station coverage, waterbody IDs, and record completeness.
 - A conservative V0 evaluation should use a narrow region, a binary catch-based outcome, and a before/after baseline comparison rather than broad product claims.
 
 ## Next Recommended Action
 
-1. Run the bounded MRIP extraction and cell-count/precision audit for the documented slice, using the acceptance checks before any baseline.
+1. Acquire the eight requested years of public MRIP CSV archives and run the
+   documented extraction. Treat the weighted point rates as diagnostics only
+   until NOAA's prescribed variance/template analysis is implemented.
 2. Join only the accepted cells to the pre-specified NOAA ISD station summaries.
 3. Establish the wave-level catch-rate baseline before considering predictors.
 4. Keep all later work within the same research-first, evidence-based approach until a meaningful baseline is proven.
