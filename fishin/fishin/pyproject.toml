@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fishing-forecast"
+version = "0.1.0"
+description = "Evidence-based fishing intelligence project"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = ["integration: requires configured external LLM credentials"]
+
+[tool.setuptools.packages.find]
+include = ["agent_system*"]
