@@ -1,187 +1,125 @@
-# V0 pilot slice and data contract
+# V0 Wisconsin pilot slice and data contract
 
-**Status:** provisional selection for the first bounded extraction  
+**Status:** selected for bounded feasibility acquisition
 **Selected on:** 2026-09-08  
-**Scope:** MRIP wave-level feasibility audit only; no production pipeline or
-prediction claim
+**Scope:** Wisconsin-first freshwater feasibility audit; no production
+pipeline, forecast, or performance claim
 
 ## Selected slice
 
-| Dimension | Selection | Reason |
+| Dimension | Selection | Evidence and rationale |
 | --- | --- | --- |
-| Observation program | NOAA Marine Recreational Information Program (MRIP) general survey | Public-use catch/trip microdata, calibrated estimates, documented survey weights, and a public query tool |
-| Species | Red drum (`Sciaenops ocellatus`); use the exact MRIP species label/code from the variable guide | A single named species keeps the target auditable and avoids pooling unlike taxa |
-| Geography | North Carolina, state waters | NOAA lists North Carolina in the South Atlantic and defines state waters as inland salt/brackish waters plus the state territorial sea; the public data supports state-level estimates |
-| Fishing mode | Shore | A single MRIP mode avoids mixing shore and private-boat effort and is explicitly covered by the Fishing Effort Survey |
-| Waves | 3, 4, and 5 (May–October) | Three consecutive two-month waves cover the warm-season window without pretending MRIP supports daily exposure |
-| Years | 2018–2025 | Eight complete years are available in the public MRIP series; 2025 is the latest final year documented by NOAA on the selection date |
-| Initial outcome | Estimated red drum catch per 1,000 shore angler trips, using one explicitly chosen catch disposition | MRIP estimates are weighted population estimates; raw microdata row counts are not catch totals |
+| Region / waterbody | Lake Winnebago System: Lake Winnebago plus the Upriver Lakes (Butte des Morts, Winneconne, and Poygan) | Wisconsin DNR identifies this as a single managed sturgeon system and publishes separate harvest reporting for Lake Winnebago and Upriver Lakes. |
+| Species | Lake sturgeon (`Acipenser fulvescens`) | The DNR documents the system as one of North America's largest lake sturgeon populations and the fishery's conservation caps. |
+| Fishing mode | Licensed ice spearing from a shelter | The DNR states that spearing occurs through the ice, requires a license, and may only be done from a shelter placed on ice. |
+| Time window | Each annual Winnebago System spearing season, February; analyze 2016–2025 only if the archived reports expose comparable fields | The DNR publishes final harvest reports for 2016–2025 and current season dates. Do not mix future revisions or a changed reporting definition without a comparability record. |
+| Outcome | Daily and season harvest count, plus harvest-to-license ratio only when the denominator is published for the same waterbody and season | This is an auditable aggregate outcome; it is not individual success probability or a forecast. |
+| Primary source | Wisconsin DNR Winnebago System sturgeon spearing final harvest reports and season updates | Official public source, directly accessible without credentials or payment. |
+| Environmental candidates | USGS Wisconsin water observations and NOAA/NWS public weather observations, joined at waterbody/day only after source coverage is measured | Reuses the prior environmental joinability findings, but freshwater station coverage must be proven for this slice. |
 
-This is a **selection**, not a statement that the cell already has adequate
-sample size or precision. The extraction must reject the slice, or narrow the
-years/waves with an explicit decision record, if the checks below fail.
+This slice is a **feasibility selection**, not evidence that the required
+historical rows, denominators, or environmental joins already pass. The first
+extraction must fail closed and report any unavailable season, waterbody,
+denominator, or field.
 
-### Source evidence
+## Source evidence
 
-NOAA's MRIP Query Tool documents filters for time series, geographic area,
-species, mode, and other characteristics. NOAA's downloads page documents
-general survey catch and trip microdata by year and two-month wave, the
-`_id_code` trip key, design variables, and the catch/trip weights. NOAA's
-glossary documents North Carolina's South Atlantic grouping, state waters,
-shore effort, confidence intervals, and imputation.
+- Wisconsin DNR, [Winnebago System Sturgeon
+  Spearing](https://dnr.wisconsin.gov/topic/fishing/sturgeon/WinnSysSturgeonSpear):
+  describes the fishery, ice-only mode, Lake Winnebago/Upriver Lakes split,
+  license rules, harvest caps, current harvest tables, and links to final
+  harvest reports for 2016–2025.
+- Wisconsin DNR, [fishing season
+  dates](https://dnr.wisconsin.gov/topic/Fishing/seasons): identifies the
+  Winnebago System spearing season as a February season.
+- Wisconsin DNR, [lake
+  sturgeon](https://dnr.wisconsin.gov/topic/Fishing/sturgeon/LakeSturgeon.html):
+  documents the species and identifies the Winnebago System as a common
+  Wisconsin range.
+- [USGS Water Data for
+  Wisconsin](https://waterdata.usgs.gov/wi/nwis/uv) and the prior
+  `v0-environmental-data-joinability.md` review support public hydrology
+  candidates, subject to station-distance and coverage checks.
 
-- Query tool: <https://www.fisheries.noaa.gov/data-tools/recreational-fisheries-statistics-queries>
-- Downloads and variable descriptions:
-  <https://www.fisheries.noaa.gov/recreational-fishing-data/recreational-fishing-data-downloads>
-- Glossary:
-  <https://www.fisheries.noaa.gov/recreational-fishing-data/recreational-fishing-data-glossary>
-- User handbook:
-  <https://www.fisheries.noaa.gov/resource/document/mrip-data-user-handbook>
-- Public estimate directory:
-  <https://apps-st.fisheries.noaa.gov/st1/recreational/MRIP_Estimate_Data/>
+Sources were checked on 2026-09-08. The DNR page and any linked report remain
+authoritative for field meaning, publication revisions, and terms.
 
-All sources were checked on 2026-09-08. NOAA publication terms and the
-current variable guide are authoritative when the extraction is implemented.
+## Public-data contract
 
-## Observation data contract
+The extraction must preserve one row per `(season_year, waterbody, day)` when
+the source provides daily data, and a separate season-level table. It must
+retain the original report URL, downloaded filename, retrieval date, SHA-256,
+source publication date, and page/table location.
 
-The extraction produces one row per `(year, wave, state, mode, species)` cell,
-plus an audit table at the trip-record level. The required fields are:
+Required fields, when present in the source:
 
-| Field | Type/constraint | Meaning |
-| --- | --- | --- |
-| `year` | integer, 2018–2025 | Calendar year |
-| `wave` | integer, 3–5 | MRIP two-month sampling wave |
-| `species_code` / `species_label` | exact MRIP values | Red drum only; retain the source code and label |
-| `state` | exact MRIP value | North Carolina only |
-| `mode` | exact MRIP value | Shore only |
-| `area` | exact MRIP value | State waters; do not silently substitute inland, ocean, or federal EEZ |
-| `id_code` | non-null source trip identifier | Links catch records to a sampled angler trip |
-| `catch_disposition` | source-coded categorical value | Preserves kept/released/discarded meaning |
-| `catch_count` | non-negative numeric or source missing | Catch count in the selected disposition |
-| `wp_catch` | positive numeric for weighted catch records | MRIP catch expansion weight |
-| `wp_int` | positive numeric for trip/effort records | MRIP interview/trip expansion weight |
-| `strat_id`, `psu_id` | non-null design identifiers where required | Survey design variables needed for auditing and prescribed estimation |
-
-The published outcome is:
-
-`1,000 × weighted red drum catch / weighted shore angler trips`
-
-The numerator and denominator must use the same cell keys and compatible
-survey definitions. The implementation must preserve the catch disposition
-instead of combining kept and released catch by default. Variance and
-confidence intervals must use NOAA's prescribed survey method/template; a
-simple standard error from raw rows is not acceptable.
-
-## Environmental join contract
-
-The first environmental source is the public NOAA Integrated Surface Database
-(ISD), joined only at the same `(year, wave, state)` cell. This is a
-region/wave covariate join, not a claim about an individual angler's weather.
-
-For each cell, retain:
-
-| Field | Requirement |
+| Field | Constraint |
 | --- | --- |
-| `environment_source` | `NOAA ISD` |
-| `station_id` | Pre-specified North Carolina coastal station identifier(s) |
-| `station_selection_rule` | Versioned rule and station metadata used to select the station(s) |
-| `observation_start`, `observation_end` | Inclusive UTC bounds for the wave |
-| `weather_coverage_fraction` | Observed expected intervals / expected intervals |
-| environmental summaries | Only variables with documented units and coverage, such as temperature, precipitation, wind, and pressure |
-| `join_confidence` | `high` only if the station rule and coverage threshold pass; otherwise `low`/`missing` |
+| `season_year` | Integer; 2016–2025 candidate window |
+| `waterbody` | Exactly `Lake Winnebago` or `Upriver Lakes`; never merge them silently |
+| `date` / `day_of_season` | Source-defined day; retain local date and source label |
+| `harvest_count` | Non-negative source value; missing is missing |
+| `license_count` / `effort_denominator` | Source-defined denominator; never infer from a different waterbody |
+| `harvest_cap` | Source-defined cap, retained as context rather than a target |
+| `species` | Exact source label: lake sturgeon |
+| `mode` | Exact source label: ice spearing |
+| `source_locator` | URL plus page/table or row locator |
 
-The station must be selected before looking at catch outcomes. Do not use
-exact trip locations: public MRIP documentation does not promise them.
-Do not use a station farther than 20 km from the documented North Carolina
-coastal study area without marking the cell low confidence. If no station
-meets the rule, retain the MRIP cell with environmental fields missing rather
-than substituting a different geography.
+The primary reported statistic is the source-compatible harvest count. A
+harvest rate is permitted only when numerator and denominator share the same
+season, waterbody, and reporting definition.
 
-## Inclusion and exclusion rules
+## Join, support, and uncertainty rules
 
-Include records only when all of the following hold:
+- Join environmental observations only on `waterbody` and local calendar day,
+  using a versioned station-selection rule chosen before looking at harvest.
+- Record station ID, coordinates, distance, observed interval, expected
+  interval, coverage fraction, units, and source revision.
+- A join is `high` confidence only when the pre-specified distance and
+  coverage thresholds pass; otherwise retain the harvest row with
+  `low`/`missing` join confidence.
+- Do not claim that a land station or river gauge measures conditions inside a
+  particular ice shanty.
+- Do not calculate a baseline or model metric until every required season and
+  field is accounted for, source definitions are comparable, and uncertainty
+  is available from the source or a documented design-based procedure.
+- No minimum support threshold is evidence of prediction quality. Support
+  thresholds may screen candidate cells, but cannot convert sparse data into
+  a claim.
 
-1. The year, wave, state, mode, area, and species match the selected slice.
-2. The source record is an eligible MRIP general-survey catch or trip record,
-   not a published estimate accidentally treated as a trip observation.
-3. The trip identifier is present and joins catch to the corresponding trip
-   record without creating duplicate trip rows.
-4. Catch counts and weights pass the source-domain checks (non-negative counts,
-   positive applicable weights, and no impossible date/wave values).
-5. The selected catch disposition is explicit and consistent across all cells.
+## Inclusion and exclusion
 
-Exclude and count separately:
+Include only official DNR report rows whose season, waterbody, species, mode,
+and field definitions match this contract. Exclude or count separately:
 
-- other species, states, areas, modes, and waves;
-- records with missing keys or unusable survey weights;
-- duplicate source rows that cannot be explained by the MRIP record grain;
-- synthetic or imputed records when the source flag identifies them, unless a
-  later analysis explicitly includes them and reports that choice;
-- charter/headboat effort-only records, because the selected mode is shore;
-- environmental observations outside the pre-specified station rule or time
-  bounds.
+- future seasons, amended reports, or mixed definitions without an explicit
+  comparability decision;
+- rows that combine Lake Winnebago and Upriver Lakes when the source permits
+  separation;
+- inferred zeros, reconstructed denominators, or values copied from a
+  different report;
+- weather or hydrology observations outside the pre-specified station and
+  date rule;
+- individual license-holder or location data not publicly documented as
+  available.
 
-No excluded record may silently become a zero catch. A missing catch value is
-missing, not evidence of no catch.
+## Missingness, licensing, and reproducibility
 
-## Missingness handling
+Report missing counts and rates by season, waterbody, field, and source file
+before producing any statistic. Missing harvest or denominator values remain
+missing; they are never imputed or treated as zero. Missing environmental data
+produces an unavailable join, not a substitute station selected after seeing
+the outcome.
 
-The audit must report missing counts and rates by year, wave, field, and source
-file before producing any outcome. Required keys, species, geography, mode,
-and weights are **hard failures** when missing. Missing environmental
-observations remain missing and produce a low-confidence or unavailable join;
-they are not mean-imputed in V0. For optional environmental summaries, retain
-the field-level missingness indicator and only calculate a summary when the
-documented coverage threshold is met.
+The DNR, USGS, NOAA/NWS, and linked report terms must be recorded with the
+retrieval metadata. No paid service, API key, credential, or restricted
+dataset is part of V0. A clean rerun must be possible from the public URLs,
+fixed source hashes, exact parser version, and documented inclusion rules.
 
-MRIP's published imputation flags must be retained as provenance. The first
-result should report estimates with and without source-identified imputed
-records if both are possible; neither result should be presented as an
-individual-trip probability.
+## Decision gate
 
-## Extraction acceptance checks
-
-The bounded extraction is accepted only if it records pass/fail results for:
-
-1. **Coverage:** all requested 2018–2025 wave files and the selected MRIP
-   species/state/mode/area labels are present, or each unavailable cell is
-   explicitly listed.
-2. **Grain:** catch-to-trip joins are one-to-one at `id_code` after the
-   documented record-grain rules; duplicate and orphan counts are zero or
-   explained.
-3. **Cell support:** every retained cell has at least 30 distinct sampled
-   trips and at least 10 trips with the selected catch disposition. This is a
-   screening floor, not a precision claim.
-4. **Precision:** the weighted estimate has a finite, non-negative estimate,
-   a finite standard error, and a finite 95% interval; report relative
-   standard error and flag cells above 30% for review rather than deleting
-   them silently.
-5. **Weight integrity:** all weighted terms use the MRIP-design fields and
-   agree with the applicable NOAA template/query definition.
-6. **Joinability:** each environmental cell records its station IDs, distance,
-   interval coverage, and missingness; no fallback station or geography is
-   chosen after inspecting the outcome.
-7. **Reproducibility:** source URLs, file names/versions, retrieval date,
-   query parameters, variable-guide version, and the exact inclusion rules
-   are saved with the audit.
-
-Failure means the slice is not yet suitable for a baseline. The next action
-would be a documented slice revision, not a model, UI, or performance claim.
-
-## Known limitations and open questions
-
-- The selected cell's actual sample support and precision are unknown until
-  public files are extracted.
-- MRIP waves are two months; environmental summaries cannot support a credible
-  daily or within-trip causal interpretation.
-- A North Carolina state-waters cell combines locations with different local
-  conditions, and an ISD station is only a proxy.
-- The 2026 FES revision creates a comparability boundary after the selected
-  2018–2025 window. The extraction must use one documented calibration series
-  and must not mix 2026 estimates into this pilot.
-- If the species label/code, station coverage, or cell support fails, the
-  failure must be reported before selecting a replacement slice.
-
-This document intentionally does not define a production schema, implement
-downloads, fit a prediction model, or claim predictive performance.
+The Wisconsin slice is ready for a baseline only if extraction proves
+comparable multi-year coverage, waterbody separation, denominator semantics,
+source support, and uncertainty. If any gate fails, document the failure and
+stop; do not pivot back to North Carolina, broaden to the Midwest, build UI or
+database infrastructure, or make a prediction/performance claim.

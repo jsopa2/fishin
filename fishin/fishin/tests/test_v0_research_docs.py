@@ -22,18 +22,16 @@ def test_v0_pilot_slice_contract_is_explicit() -> None:
     assert doc.exists()
     text = doc.read_text(encoding="utf-8")
     for required in (
-        "Red drum",
-        "North Carolina, state waters",
-        "Shore",
-        "Waves",
-        "2018–2025",
-        "Observation data contract",
-        "Environmental join contract",
-        "Missingness handling",
-        "Extraction acceptance checks",
-        "at least 30",
-        "distinct sampled",
-        "production schema",
-        "prediction model",
+        "Wisconsin",
+        "Lake Winnebago System",
+        "Lake sturgeon",
+        "ice spearing",
+        "2016–2025",
+        "Public-data contract",
+        "Missingness, licensing, and reproducibility",
+        "Decision gate",
+        "North Carolina",
+        "production",
+        "prediction",
     ):
         assert required in text

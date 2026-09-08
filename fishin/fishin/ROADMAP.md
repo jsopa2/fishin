@@ -1,12 +1,14 @@
 # Roadmap
 
-**CURRENT ACTIVE PHASE: V0 — Prediction Feasibility**
+**CURRENT ACTIVE PHASE: V0 — Wisconsin Prediction Feasibility**
 
 Later phases are inactive until V0 is sufficiently validated.
 
 ## V0 — Prediction Feasibility
 
-Establish whether public observations and environmental data support a validated fishing-conditions prediction.
+Establish whether Wisconsin public observations and environmental data support
+a validated, bounded fishing-conditions benchmark. Other Midwest states and
+waterbodies are expansion targets only after the Wisconsin gates pass.
 
 ## V1 — Fishing Forecast
 
