@@ -96,7 +96,7 @@ STATE.md is the source of truth for project status.
 
 ## Example: Refactor Documentation
 
-**Task:** Migrate from OpenHands agent architecture to GitHub/Copilot model.
+**Task:** Keep the repository aligned with the GitHub/Copilot operating model.
 
 **Changes:**
 - Create COPILOT.md — new operating manual
