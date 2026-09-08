@@ -44,7 +44,7 @@ See [COPILOT.md](COPILOT.md) for the complete operating manual.
 - `tests/` — unit tests for all code
 
 **Infrastructure:**
-- `.github/workflows/` — GitHub Actions automation (future)
+- `.github/workflows/` — lightweight GitHub Actions checks
 - `pyproject.toml` — Python project config
 
 ---

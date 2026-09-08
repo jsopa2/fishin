@@ -14,8 +14,6 @@ dev = ["pytest>=8"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-m 'not integration'"
-markers = ["integration: requires configured external LLM credentials"]
 
 [tool.setuptools.packages.find]
 include = ["agent_system*"]
