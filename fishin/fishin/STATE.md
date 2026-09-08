@@ -25,16 +25,17 @@ V0 — Prediction Feasibility
 
 ## Active Work
 
-Issue #8 adds a bounded, standard-library NOAA MRIP CSV archive extractor for
-the selected red drum, North Carolina state-waters, shore, waves 3–5,
-2018–2025 slice. It records source hashes, exact filters, coverage, grain,
-missing cells, and weighted point-rate diagnostics without committing source
-data. NOAA survey precision templates and environmental joins remain
-intentionally unimplemented.
+Issue #9 adds a fail-closed wave-level baseline evaluator for the approved
+Issue #8 MRIP slice. The reference is the same-wave historical mean across
+accepted years. It withholds metrics unless coverage, grain, support, NOAA
+survey precision, and uncertainty gates all pass.
 
 ## Blocked
 
-None.
+The current extraction cannot establish a defensible baseline: NOAA complex
+survey variance/template analysis is not implemented, so `precision=false` and
+uncertainty fields are unavailable. Weighted point rates remain diagnostics
+only. The support floor is also enforced rather than relaxed.
 
 ## Decisions Needed
 
@@ -66,12 +67,13 @@ None currently. This work remains within V0 research scope and does not require 
 
 ## Next Recommended Action
 
-1. Acquire the eight requested years of public MRIP CSV archives and run the
-   documented extraction. Treat the weighted point rates as diagnostics only
-   until NOAA's prescribed variance/template analysis is implemented.
-2. Join only the accepted cells to the pre-specified NOAA ISD station summaries.
-3. Establish the wave-level catch-rate baseline before considering predictors.
-4. Keep all later work within the same research-first, evidence-based approach until a meaningful baseline is proven.
+1. Implement and validate NOAA's prescribed complex-survey variance/template
+   analysis for the selected MRIP design, without changing the support floor.
+2. Re-run the full 2018–2025 extraction and baseline evaluator; publish metrics
+   only if every gate passes.
+3. Join only accepted cells to the pre-specified NOAA ISD station summaries.
+4. Keep later work within the same research-first, evidence-based approach
+   until a meaningful baseline is proven.
 
 ## Human Attention Required
 

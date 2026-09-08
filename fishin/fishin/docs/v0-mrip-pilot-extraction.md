@@ -51,3 +51,21 @@ point rates are therefore an acquisition/audit diagnostic, not an accepted
 baseline or predictive result. Environmental ISD joins are not included in
 this artifact; they remain a separate, pre-specified follow-up after the MRIP
 cell audit passes.
+
+## Issue #9 baseline gate
+
+The reference baseline is a same-wave historical rate: for each `(year,
+wave)` cell, compare its rate with the pooled weighted rate from other accepted
+years in the same wave. The report also includes one pooled weighted reference
+across all accepted cells. Species, state waters, shore mode, and the selected
+catch disposition remain fixed by the pilot contract. The evaluator is
+`agent_system.baseline.evaluate_baseline`.
+
+It fails closed. It publishes no baseline metric when any requested coverage,
+catch/trip grain, support, survey precision, or uncertainty gate fails.
+Uncertainty requires finite per-cell standard errors and confidence limits from
+the applicable NOAA complex-survey procedure; raw-row standard errors are not
+accepted. With the current Issue #8 artifact, `precision=false` and these
+fields are absent, so Issue #9 cannot make a defensible baseline claim. The
+correct result is **baseline not estimable from the acquired evidence**, not a
+zero rate, an imputed value, or a weakened threshold.
