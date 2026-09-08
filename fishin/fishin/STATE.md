@@ -25,7 +25,8 @@ V0 — Prediction Feasibility
 
 ## Active Work
 
-None—repository ready for work queue (GitHub Issues).
+Issue #4 — assessing public fishing-observation data availability and defining one
+measurable V0 outcome.
 
 ## Blocked
 
@@ -37,18 +38,30 @@ None currently.
 
 ## Recent Findings
 
-None yet (V0 work has not started).
+- NOAA MRIP is the strongest documented public candidate: it provides catch and
+  effort estimates plus public-use microdata for Atlantic and Gulf recreational
+  fishing, organized at two-month wave resolution.
+- A defensible first outcome is estimated catch per 1,000 angler trips for one
+  species, area, mode, and wave. It requires survey weights and cell-level
+  precision checks; it is not an individual catch probability.
+- Environmental joins are plausible at region/wave level, but exact fishing
+  locations and daily weather exposure are not established by the public MRIP
+  documentation.
+- Detailed evidence and source constraints are recorded in
+  `docs/fishing-observation-data-availability.md`.
 
 ## Next Recommended Action
 
-1. CEO: Create GitHub Issues describing the next authorized work
-2. Copilot: Read COPILOT.md, then execute in-scope work through GitHub Issues and PRs
-
-**Do NOT start V0 work yet—await CEO direction.**
+1. Select one MRIP species, area, and mode with adequate public sample coverage.
+2. Run a bounded, reproducible MRIP extraction and cell-count/precision audit,
+   joined only to one explicitly documented environmental source.
+3. Establish the wave-level catch-rate baseline before considering predictors.
 
 ## Human Attention Required
 
-CEO should create the first V0 GitHub Issues when ready. Routine Issue-authorized PRs may merge after automated checks pass; gated decisions still require explicit CEO approval.
+No CEO-level decision was required for this scoped research. Paid services,
+credentials, sensitive data, and externally significant performance claims remain
+out of scope.
 
 ---
 
