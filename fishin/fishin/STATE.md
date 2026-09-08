@@ -25,7 +25,8 @@ V0 — Prediction Feasibility
 
 ## Active Work
 
-V0 environmental/weather data availability and joinability review.
+Issue #4 research complete: public fishing-observation data availability, measurable
+outcome definition, and environmental/weather joinability review.
 
 ## Blocked
 
@@ -37,6 +38,17 @@ None currently. This work remains within V0 research scope and does not require 
 
 ## Recent Findings
 
+- NOAA MRIP is the strongest documented public candidate: it provides catch and
+  effort estimates plus public-use microdata for Atlantic and Gulf recreational
+  fishing, organized at two-month wave resolution.
+- A defensible first outcome is estimated catch per 1,000 angler trips for one
+  species, area, mode, and wave. It requires survey weights and cell-level
+  precision checks; it is not an individual catch probability.
+- Environmental joins are plausible at region/wave level, but exact fishing
+  locations and daily weather exposure are not established by the public MRIP
+  documentation.
+- Detailed evidence and source constraints are recorded in
+  `docs/fishing-observation-data-availability.md`.
 - Public weather and hydrology datasets are available without paid services, including NOAA/NWS, NOAA CDO, Open-Meteo historical archive, USGS NWIS, and NOAA buoy observations.
 - The main feasibility risk is not missing weather data; it is building a valid trip-level outcome label and joining that label to the correct time and place without introducing noise.
 - Marine/coastal datasets are relatively mature, while inland freshwater data quality depends heavily on nearby station coverage, waterbody IDs, and record completeness.
@@ -44,13 +56,16 @@ None currently. This work remains within V0 research scope and does not require 
 
 ## Next Recommended Action
 
-1. Validate the V0 research with repository tests and evidence review.
-2. Use the documented joinability findings to scope a narrow pilot dataset for a future V0 modeling pass.
-3. Keep all later work within the same research-first, evidence-based approach until a meaningful baseline is proven.
+1. Select one MRIP species, area, and mode with adequate public sample coverage.
+2. Run a bounded, reproducible MRIP extraction and cell-count/precision audit, joined only to one explicitly documented environmental source.
+3. Establish the wave-level catch-rate baseline before considering predictors.
+4. Keep all later work within the same research-first, evidence-based approach until a meaningful baseline is proven.
 
 ## Human Attention Required
 
-No CEO approval gate is currently triggered by this research-only work. The remaining next step is execution within the V0 research scope and routine PR review.
+No CEO approval gate was triggered by this research-only work. Paid services,
+credentials, sensitive data, and externally significant performance claims remain
+out of scope.
 
 ---
 
