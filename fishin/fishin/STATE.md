@@ -25,7 +25,7 @@ V0 — Prediction Feasibility
 
 ## Active Work
 
-None—repository ready for work queue (GitHub Issues).
+V0 environmental/weather data availability and joinability review.
 
 ## Blocked
 
@@ -33,22 +33,24 @@ None.
 
 ## Decisions Needed
 
-None currently.
+None currently. This work remains within V0 research scope and does not require a product or budget gate.
 
 ## Recent Findings
 
-None yet (V0 work has not started).
+- Public weather and hydrology datasets are available without paid services, including NOAA/NWS, NOAA CDO, Open-Meteo historical archive, USGS NWIS, and NOAA buoy observations.
+- The main feasibility risk is not missing weather data; it is building a valid trip-level outcome label and joining that label to the correct time and place without introducing noise.
+- Marine/coastal datasets are relatively mature, while inland freshwater data quality depends heavily on nearby station coverage, waterbody IDs, and record completeness.
+- A conservative V0 evaluation should use a narrow region, a binary catch-based outcome, and a before/after baseline comparison rather than broad product claims.
 
 ## Next Recommended Action
 
-1. CEO: Create GitHub Issues describing the next authorized work
-2. Copilot: Read COPILOT.md, then execute in-scope work through GitHub Issues and PRs
-
-**Do NOT start V0 work yet—await CEO direction.**
+1. Validate the V0 research with repository tests and evidence review.
+2. Use the documented joinability findings to scope a narrow pilot dataset for a future V0 modeling pass.
+3. Keep all later work within the same research-first, evidence-based approach until a meaningful baseline is proven.
 
 ## Human Attention Required
 
-CEO should create the first V0 GitHub Issues when ready. Routine Issue-authorized PRs may merge after automated checks pass; gated decisions still require explicit CEO approval.
+No CEO approval gate is currently triggered by this research-only work. The remaining next step is execution within the V0 research scope and routine PR review.
 
 ---
 
