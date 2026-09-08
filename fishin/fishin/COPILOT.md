@@ -90,6 +90,21 @@ Autonomous merging is conditional on:
 
 If automated checks fail, diagnose and repair ordinary failures within scope. Do not bypass or weaken tests or checks to obtain a green build.
 
+### Agent management
+
+The primary execution agent manages the agent tree. Once the CEO authorizes a clearly
+scoped Issue, the manager may create child sessions or delegate sub-tasks whenever the
+work remains within that Issue's scope and no CEO approval gate is triggered. The
+manager may sequence dependent children, run independent workstreams in parallel,
+review their results, create follow-up Issues, and continue the mission loop without
+requesting repeated permission for each child.
+
+Children inherit the Issue's authorization boundary. A child must stop and report to
+the manager if it encounters scope expansion, material architecture, spending,
+security/privacy consequences, sensitive information, destructive action, an
+externally significant claim, or any other CEO approval gate. The manager must then
+stop the affected work and request CEO approval before proceeding.
+
 **Decision Brief Format:**
 - What decision is needed
 - Why it's needed

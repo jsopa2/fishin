@@ -21,7 +21,7 @@ V0 — Prediction Feasibility
 - Updated .env.example (removed deprecated credentials)
 - All remaining tests pass
 
-**Repository is clean and ready for Copilot to execute authorized work through GitHub Issues.**
+**Repository is clean and ready for manager-directed V0 execution through authorized Issues.**
 
 ## Active Work
 

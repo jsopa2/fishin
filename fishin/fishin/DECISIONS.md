@@ -39,3 +39,14 @@ Routine work is authorized by a clearly scoped GitHub Issue. Copilot may impleme
 CEO approval remains required for spending, paid services, material product or strategy changes, major unauthorized architecture changes, externally significant claims, material security or privacy decisions, sensitive-information exposure, abandoning major objectives, destructive actions, and other decisions requiring founder judgment.
 
 This decision clarifies the operating model established by Decision 006: its historical emphasis on human review and approval applies to gated decisions, not every routine PR.
+
+## 008 — Manager-authorized child execution
+
+After the CEO authorizes a clearly scoped Issue, the primary execution agent may
+create child sessions and delegate dependent or parallel work within that Issue
+without requesting repeated permission for each child. Children inherit the Issue
+authorization boundary. Any scope expansion or CEO approval gate must stop the
+affected work and return the decision to the CEO.
+
+This is an execution-management rule, not permission to bypass the Issue boundary,
+quality gates, evidence standards, or CEO approval requirements.

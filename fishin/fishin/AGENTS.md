@@ -20,4 +20,10 @@ CEO approval is required before spending money, introducing paid services, makin
 
 Copilot must not silently expand an Issue's scope. Automated checks must pass, known secrets must not be exposed, and tests/checks must not be weakened to obtain a green build.
 
+The primary execution agent is the manager of agents. After the CEO authorizes a
+clearly scoped Issue, the manager may create child sessions and delegate dependent or
+parallel work within that Issue without asking the CEO again for each child. Children
+inherit the Issue scope and must escalate any CEO approval gate to the manager; the
+manager stops the affected work and requests CEO approval before proceeding.
+
 Completed work must report what was done, learned, evidence, tests, limitations, and a recommended next action. Blocked work must report the blocker, why, options, recommendation, and whether CEO approval is required.
