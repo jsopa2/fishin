@@ -18,7 +18,7 @@ Weather, seasonality, time, location, species, and environmental conditions cont
 * Free APIs where possible
 * Public/open datasets
 * Open-source software
-* GitHub and Copilot for AI-assisted development
+* OpenHands for execution, with a replaceable external model provider
 * Minimize infrastructure
 * No unnecessary paid services or complexity
 

@@ -1,6 +1,6 @@
 ---
 name: Work item
-about: Define a focused task for the GitHub/Copilot work queue
+about: Define a focused task for the GitHub/OpenHands work queue
 title: ""
 labels: ""
 assignees: ""

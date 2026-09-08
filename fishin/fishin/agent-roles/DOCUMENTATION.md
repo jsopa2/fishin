@@ -22,7 +22,7 @@ These are the source of truth and must stay current:
 - **DECISIONS.md** — architectural and strategic decisions with rationale
 - **STATE.md** — current status, blockers, findings, next action
 - **AGENTS.md** — company constitution and operating principles
-- **COPILOT.md** — operating manual for Copilot agent (you)
+- **COPILOT.md** — execution operating manual and governance policy
 
 **Keep these in sync with reality.** If something changes, update STATE.md immediately.
 
@@ -32,7 +32,7 @@ The entry point for the repository. Should answer:
 
 1. What is Fishing Forecast?
 2. Current phase and objective.
-3. How the company operates (GitHub + Copilot model).
+3. How the company operates (GitHub + OpenHands model).
 4. How to set up the repo and run code/tests.
 5. Where to find company memory and guidelines.
 6. What is deliberately NOT being built yet.
@@ -96,7 +96,7 @@ STATE.md is the source of truth for project status.
 
 ## Example: Refactor Documentation
 
-**Task:** Keep the repository aligned with the GitHub/Copilot operating model.
+**Task:** Keep the repository aligned with the GitHub/OpenHands operating model.
 
 **Changes:**
 - Create COPILOT.md — new operating manual

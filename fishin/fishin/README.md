@@ -12,13 +12,15 @@ Fishing Forecast is an evidence-based fishing intelligence project: help anglers
 ## How the Company Operates
 
 - **CEO** sets high-level objectives and approves major decisions
-- **Copilot** (you, in GitHub) executes disciplined work through GitHub
+- **OpenHands** executes authorized work from GitHub Issues
+- **OpenRouter or another OpenAI-compatible gateway** provides a replaceable model API layer
 - **GitHub** is the durable source of truth: repository, issues, PRs, commits, and docs
 - **Issues** are the work queue
 - **PRs** are employee deliverables (code, research, docs)
 - **STATE.md** tracks current status, blockers, findings, and recommended next action
 
 See [COPILOT.md](COPILOT.md) for the complete operating manual.
+See [docs/openhands/bootstrap.md](docs/openhands/bootstrap.md) for the verified bootstrap status and smoke procedure.
 
 ---
 
@@ -33,7 +35,7 @@ See [COPILOT.md](COPILOT.md) for the complete operating manual.
 - `STATE.md` — current status, active work, blockers, findings, next action
 - `DECISIONS.md` — architectural and strategic decisions with rationale
 - `AGENTS.md` — company constitution and operating principles
-- `COPILOT.md` — operating manual for Copilot agent
+- `COPILOT.md` — execution operating manual and governance policy
 
 **Specialized Roles:**
 - `agent-roles/` — lightweight guidance for research, data science, engineering, QA, and documentation
@@ -74,7 +76,7 @@ python -m pytest
 Before starting work, read these in order:
 
 1. `VISION.md` — understand the mission
-2. `COPILOT.md` — understand how Copilot operates
+2. `COPILOT.md` — understand the execution operating model
 3. `STATE.md` — understand current status and next action
 4. `PROJECT.md`, `STRATEGY.md`, `GOALS.md` — understand current objectives
 5. `DECISIONS.md` — understand why current decisions were made
@@ -122,7 +124,7 @@ See `COPILOT.md` for complete operating principles.
 
 ## Making a Decision or Escalating
 
-Copilot (you) has autonomy on routine technical work.
+OpenHands has autonomy on routine technical work authorized by a GitHub Issue.
 
 For authorization boundaries and CEO approval gates, see the "Authorization and CEO Approval" section in [COPILOT.md](COPILOT.md).
 

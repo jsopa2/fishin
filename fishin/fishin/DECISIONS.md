@@ -39,3 +39,9 @@ Routine work is authorized by a clearly scoped GitHub Issue. Copilot may impleme
 CEO approval remains required for spending, paid services, material product or strategy changes, major unauthorized architecture changes, externally significant claims, material security or privacy decisions, sensitive-information exposure, abandoning major objectives, destructive actions, and other decisions requiring founder judgment.
 
 This decision clarifies the operating model established by Decision 006: its historical emphasis on human review and approval applies to gated decisions, not every routine PR.
+
+## 008 — OpenHands execution harness
+
+OpenHands is the current execution harness for authorized GitHub Issue work. GitHub remains the durable company source of truth, and the model API is a replaceable external dependency. The initial preferred path is OpenHands through an OpenAI-compatible gateway such as OpenRouter to an open-weight model, subject to verified tool configuration and CEO-approved credentials.
+
+This supersedes Decision 006's current-agent wording without rewriting its historical record. Governance, authorization boundaries, CEO approval gates, and evidence standards remain unchanged.
