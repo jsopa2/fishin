@@ -22,11 +22,18 @@ The selected contract is documented in
 baseline evaluator are historical research only and must not be presented as
 Wisconsin evidence.
 
+Issue #18 now has a bounded Wisconsin acquisition artifact in
+`agent_system/wisconsin.py` and `docs/wisconsin-extraction-audit.md`. It
+discovers the DNR report links, preserves source hashes, extracts only explicit
+season totals, and blocks incomplete coverage, denominator, or uncertainty
+support.
+
 ## Blocked
 
-No Wisconsin extraction has been completed. Comparable 2016–2025 report
-coverage, waterbody separation, denominator semantics, environmental
-joinability, and uncertainty remain unproven.
+The first Wisconsin extraction audit is intentionally blocked: comparable
+2016–2025 rows, daily grain, denominator semantics, and source uncertainty
+remain unproven. Archived Widen links may return an HTML viewer rather than a
+direct PDF and are recorded as unavailable rather than parsed.
 
 ## Recent Findings
 
