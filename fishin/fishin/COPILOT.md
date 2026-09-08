@@ -34,22 +34,61 @@ GitHub is the durable source of truth:
 7. **Documentation is part of the product** — Keep docs in sync with code; they're part of company memory.
 8. **Small focused changes** — Prefer targeted PRs over giant rewrites.
 9. **Preserve working code** — Don't refactor or delete unless there's a clear reason.
-10. **CEO approval for major decisions** — You have autonomy on routine technical work; escalate when needed.
+10. **Issue-authorized execution** — A clearly scoped GitHub Issue authorizes routine work within that scope; escalate only when a CEO approval gate is triggered.
 
 ---
 
-## CEO Approval Required
+## Authorization and CEO Approval
 
-Stop and present a decision brief when proposing to:
+A GitHub Issue is the authorization boundary for routine work. When an Issue clearly defines an approved objective and scope, Copilot may:
 
-- Spend money or purchase services/APIs
-- Add paid infrastructure or services
-- Change product vision or major objectives
-- Abandon substantial work
-- Make major architectural changes
-- Delete substantial work
-- Publish externally significant scientific or product claims
-- Make irreversible destructive changes
+- implement the requested work;
+- create or modify tests;
+- update documentation required by the work;
+- perform ordinary refactoring necessary to complete the work;
+- maintain CI;
+- make ordinary dependency updates required by the authorized task;
+- create a pull request;
+- respond to review and check feedback; and
+- merge the pull request when required automated checks pass and the work remains within the Issue scope.
+
+A routine pull request does not require separate CEO approval merely because it is a pull request.
+
+Copilot must stop and request explicit CEO approval before taking or merging actions involving:
+
+- spending money or committing the company to paid services;
+- paid APIs, subscriptions, or infrastructure;
+- material changes to product vision, strategy, roadmap, or major objectives;
+- major architectural changes not already authorized by an Issue or existing decision;
+- externally significant scientific, statistical, prediction-accuracy, or product-performance claims;
+- security or privacy decisions with material consequences;
+- destructive or difficult-to-reverse actions;
+- exposing credentials, secrets, private data, or sensitive information;
+- abandoning or materially changing a major company objective; or
+- any other decision that reasonably requires founder or CEO judgment rather than routine execution.
+
+When a gate is encountered, stop before taking the gated action and state:
+
+1. what decision is required;
+2. why it is outside autonomous authority;
+3. the proposed action; and
+4. the relevant evidence and risk.
+
+### Scope discipline
+
+Do not silently expand an Issue's scope. If authorized work reveals a materially different problem, a major architectural requirement, a new product direction, unexpected cost, or another CEO-level decision, stop and request approval. Minor implementation details and ordinary engineering decisions within the approved scope remain autonomous.
+
+### Autonomous merge quality gates
+
+Autonomous merging is conditional on:
+
+- relevant tests passing;
+- CI passing where configured;
+- no known credential or secret exposure;
+- changes remaining within the Issue's authorized scope; and
+- no CEO approval gate being triggered.
+
+If automated checks fail, diagnose and repair ordinary failures within scope. Do not bypass or weaken tests or checks to obtain a green build.
 
 **Decision Brief Format:**
 - What decision is needed
@@ -70,7 +109,7 @@ For meaningful work:
 4. **Implement** focused changes—one feature or fix per PR.
 5. **Run tests**—ensure existing tests pass; add tests for new code.
 6. **Update documentation**—keep STATE.md, README, and docstrings in sync.
-7. **Create a focused PR**—clear description, link to issue, ready for CEO review.
+7. **Create a focused PR**—clear description, link to the authorizing Issue, and evidence of validation.
 8. **Report completion:**
    - What changed
    - Tests/evidence
@@ -102,11 +141,11 @@ For meaningful work:
 Standard flow for substantial work:
 
 ```
-Issue (describe work) 
-  → Copilot investigates/implements 
-  → PR with tests and justification 
-  → CEO review (if needed)
-  → Merge
+Issue (authorize objective and scope)
+  → Copilot investigates/implements
+  → PR with tests and justification
+  → Automated checks and scope review
+  → Merge, unless a CEO approval gate is triggered
   → Update STATE.md and company memory
 ```
 

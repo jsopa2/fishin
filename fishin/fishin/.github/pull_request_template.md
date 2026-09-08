@@ -10,6 +10,6 @@
 
 <!-- What is not covered or still uncertain? -->
 
-## CEO approval
+## Authorization and CEO approval
 
-<!-- Required for major product, financial, architectural, or externally significant decisions. -->
+<!-- Link the authorizing Issue. State whether any CEO approval gate is triggered. Routine Issue-authorized PRs do not require separate CEO approval. -->

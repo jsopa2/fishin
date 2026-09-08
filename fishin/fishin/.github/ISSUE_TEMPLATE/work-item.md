@@ -10,6 +10,10 @@ assignees: ""
 
 <!-- What should be learned, changed, or delivered? -->
 
+## Authorized scope
+
+<!-- State what routine work Copilot may do to complete this Issue. -->
+
 ## Context
 
 <!-- Link relevant company-memory documents, decisions, or prior issues. -->
@@ -20,4 +24,4 @@ assignees: ""
 
 ## CEO approval required?
 
-<!-- Note whether this affects product direction, spending, architecture, or external claims. -->
+<!-- Note whether this Issue includes a CEO approval gate. Routine Issue-authorized work does not require separate PR approval. -->

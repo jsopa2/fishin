@@ -31,3 +31,11 @@ The company operates via GitHub as the durable source of truth, with CEO setting
 - Moving away from OpenHands SDK simplifies dependencies and reduces framework lock-in
 - Copilot executes focused, evidence-based work following lightweight role definitions (RESEARCH.md, DATA_SCIENCE.md, ENGINEERING.md, QA.md, DOCUMENTATION.md)
 - No separate autonomous agent orchestration framework—Copilot is the single execution engine
+
+## 007 — Issue-authorized routine execution
+
+Routine work is authorized by a clearly scoped GitHub Issue. Copilot may implement, test, document, refactor, maintain CI, make ordinary task-required dependency updates, create PRs, respond to feedback, and merge after required checks pass when the work remains within the Issue scope.
+
+CEO approval remains required for spending, paid services, material product or strategy changes, major unauthorized architecture changes, externally significant claims, material security or privacy decisions, sensitive-information exposure, abandoning major objectives, destructive actions, and other decisions requiring founder judgment.
+
+This decision clarifies the operating model established by Decision 006: its historical emphasis on human review and approval applies to gated decisions, not every routine PR.

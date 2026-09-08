@@ -124,7 +124,7 @@ See `COPILOT.md` for complete operating principles.
 
 Copilot (you) has autonomy on routine technical work.
 
-For major decisions, see the "CEO Approval Required" section in [COPILOT.md](COPILOT.md).
+For authorization boundaries and CEO approval gates, see the "Authorization and CEO Approval" section in [COPILOT.md](COPILOT.md).
 
 ---
 

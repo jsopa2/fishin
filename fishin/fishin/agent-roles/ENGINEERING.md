@@ -71,7 +71,7 @@ Before opening a PR:
 - They're lightweight and well-maintained
 
 **Never add:**
-- OpenHands SDK/tools (deprecated for this model)
+- Custom agent orchestration frameworks (the project operates through GitHub and Copilot)
 - LLM provider APIs (unless needed for the actual product)
 - Heavy frameworks without clear justification
 
